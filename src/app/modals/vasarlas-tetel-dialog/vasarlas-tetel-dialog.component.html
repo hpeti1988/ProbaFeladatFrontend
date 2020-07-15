@@ -1,0 +1,59 @@
+<form
+name="form"
+#VasarlasTetelForm="ngForm"
+(ngSubmit)="onSubmit()"
+novalidate
+class="feedback-form"
+autocomplete="off"
+>
+<div class="form-group">
+  <label>Termék</label>
+  <select
+   class="form-control"
+   name="termek"
+   #name="ngModel"
+   placeholder="Termék"
+   [(ngModel)]="cikkId"
+   required
+   >
+    <option *ngFor="let cikk of cikkek" [value]="cikk.id">
+        {{cikk.nev}}
+      </option>
+  </select>
+</div>
+<div class="form-group">
+  <label>Mennyiség</label>
+  <input
+    type="number"
+    class="form-control"
+    name="mennyiseg"
+    min="1"
+    #name="ngModel"
+    placeholder="Mennyiség"
+    [(ngModel)]="vasarlasTetel.mennyiseg"
+    required
+  />
+</div>
+<div class="form-group">
+    <label>PartnerId</label>
+    <input
+      type="number"
+      min="1"
+      class="form-control"
+      name="partnerId"
+      #name="ngModel"
+      placeholder="PartnerId"
+      [(ngModel)]="vasarlasTetel.partnerId"
+      required
+    />
+  </div>
+<button
+  mat-dialog-close="true"
+  style="display: block; margin: auto;"
+  type="submit"
+  [disabled]="!VasarlasTetelForm.valid"
+  class="btn btn-info pull-right"
+>
+  <span> Létrehozás </span>
+</button>
+</form>

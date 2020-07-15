@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="mat-elevation-z8">
+    <div style="text-align: center;">
+      <button mat-raised-button color="primary" style="margin-top: 1%;" (click)="openDialog()">Tétel hozzáadása</button>
+    </div>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="nev">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Termék neve</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.partnerct.nev}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="mennyiseg">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Mennyiség</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.mennyiseg}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="mennyisegEgyseg">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Mennyiség egység</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.partnerct.mennyisegEgyseg}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="brutto">
+    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Bruttó ár</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.brutto}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="nettoEgysegar">
+    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Nettó ár</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.partnerct.nettoEgysegar}} Ft.</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="vonalKod">
+    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Vonalkód</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.partnerct.vonalKod}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="cikkSzam">
+    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Vonalkód</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.partnerct.cikkSzam}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="partnerId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Vonalkód</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.partnerId}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">      
+      <button mat-icon-button><mat-icon color="warn" (click)="deleteVasarlasTetel(element.id)">delete_outline</mat-icon></button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+  </div>
+</div>
+
+
+

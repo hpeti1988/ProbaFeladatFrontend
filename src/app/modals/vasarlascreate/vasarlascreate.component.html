@@ -1,0 +1,46 @@
+<form
+name="form"
+#VasarlasCreateForm="ngForm"
+(ngSubmit)="onSubmit()"
+novalidate
+class="feedback-form"
+autocomplete="off"
+>
+  <div class="form-group">
+    <label style="font-weight: bold;">Bolt kiválasztása</label>
+    <select
+      class="form-control"
+      name="bolt"
+      #name="ngModel"
+      placeholder="Bolt kiválasztása"
+      [(ngModel)]="boltId"
+      required
+    >
+      <option *ngFor="let bolt of bolt" [value]="bolt.id">
+        {{bolt.nev}}
+      </option>
+    </select>
+  </div>
+<div class="form-group">
+  <label style="font-weight: bold;">PartnerId</label>
+  <input
+    type="number"
+    min="1"
+    class="form-control"
+    name="partnerId"
+    #name="ngModel"
+    placeholder="PartnerId"
+    [(ngModel)]="vasarlas.partnerId"
+    required
+  />
+</div>
+<button
+  mat-dialog-close="true"
+  style="display: block; margin: auto;"
+  type="submit"
+  [disabled]="!VasarlasCreateForm.valid"
+  class="btn btn-info pull-right"
+>
+  <span> Létrehozás </span>
+</button>
+</form>

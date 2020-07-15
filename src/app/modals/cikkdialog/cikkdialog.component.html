@@ -1,0 +1,93 @@
+<form
+name="form"
+#CikkForm="ngForm"
+(ngSubmit)="onSubmit()"
+novalidate
+class="feedback-form"
+autocomplete="off"
+>
+<div class="form-group">
+  <label style="font-weight: bold;">Termék neve</label>
+  <input
+    type="text"
+    class="form-control"
+    name="nev"
+    #name="ngModel"
+    placeholder="Termék neve"
+    [(ngModel)]="cikk.nev"
+    required
+  />
+  <label style="font-weight: bold;">Mennyiség egység</label>
+  <input
+    type="text"
+    class="form-control"
+    name="mennyisegEgyseg"
+    #name="ngModel"
+    placeholder="Mennyiség egység"
+    [(ngModel)]="cikk.mennyisegEgyseg"
+    required
+  />
+  <label style="font-weight: bold;">Nettó egységár</label>
+  <input
+    type="number"
+    min="1"
+    class="form-control"
+    name="nettoEgysegar"
+    #name="ngModel"
+    placeholder="Nettó egységár"
+    [(ngModel)]="cikk.nettoEgysegar"
+    required
+  />
+  <label style="font-weight: bold;">Cikkszám</label>
+  <input
+    type="text"
+    class="form-control"
+    name="cikkSzam"
+    #name="ngModel"
+    placeholder="Cikkszám"
+    [(ngModel)]="cikk.cikkSzam"
+    required
+  />
+  <label style="font-weight: bold;">Vonalkód</label>
+  <input
+    type="text"
+    class="form-control"
+    name="vonalKod"
+    #name="ngModel"
+    placeholder="Vonalkód"
+    [(ngModel)]="cikk.vonalKod"
+    required
+  />
+  <label style="font-weight: bold;">Verzió</label>
+  <input
+    type="number"
+    min="1"
+    class="form-control"
+    name="verzio"
+    #name="ngModel"
+    placeholder="Verzió"
+    [(ngModel)]="cikk.verzio"
+    required
+  />
+  <label style="font-weight: bold;">PartnerId</label>
+  <input
+    type="number"
+    min="1"
+    class="form-control"
+    name="partnerId"
+    #name="ngModel"
+    placeholder="PartnerId"
+    [(ngModel)]="cikk.partnerId"
+    required
+  />
+</div>
+<button
+  mat-dialog-close="true"
+  style="display: block; margin: auto;"
+  type="submit"
+  [disabled]="!CikkForm.valid"
+  class="btn btn-info pull-right"
+>
+  <span> Létrehozás </span>
+</button>
+</form>

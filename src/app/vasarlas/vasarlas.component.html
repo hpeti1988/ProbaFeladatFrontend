@@ -1,0 +1,71 @@
+<div class="container">
+  <div style="text-align: center;">
+    <button mat-raised-button color="warn" style="margin-top: 1%; margin-right: 1%;" (click)="exportBolt()">Bolt exportálás</button>
+    <button mat-raised-button color="warn" style="margin-top: 1%; margin-right: 1%;" (click)="exportCikk()">Cikk exportálás</button>
+    <button mat-raised-button color="warn" style="margin-top: 1%; margin-right: 1%;" (click)="exportVasarlas()">Vásárlás exportálás</button>
+    <button mat-raised-button color="warn" style="margin-top: 1%; margin-right: 1%;" (click)="exportVasarlasTetel()">Vásárlás Tétel exportálás</button>
+  </div>
+  <div class="search-div" style="margin-left: 2%;">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input matInput [(ngModel)]="searchKey" placeholder="Keresés" autocomplete="off" (keyup)="applyFilter()" >
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+<div class="mat-elevation-z8">
+  <div style="text-align: center;">
+    <button mat-raised-button color="primary" style="margin-top: 1%; margin-right: 1%;" (click)="openBoltDialog()">Bolt létrehozás</button>
+    <button mat-raised-button color="primary" style="margin-top: 1%; margin-right: 1%;" (click)="openVasarlasDialog()">Vásárlás létrehozás</button>
+    <button mat-raised-button color="primary" style="margin-top: 1%; margin-right: 1%;"(click)="openCikkDialog()" >Cikk létrehozás</button>
+  </div>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="bolt_nev">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; font-size: medium;">Bolt neve</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.bolt_nev}}</mat-cell>
+    </ng-container> 
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; font-size: medium;">VásárlásID </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="penztargepAzonosito">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; font-size: medium;">Pénztárgép</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.penztargepAzonosito}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="partnerId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; font-size: medium;">PartnerId</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.partnerId}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="vasarlasOsszeg">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; font-size: medium;">Vásárlás összege</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.vasarlasOsszeg}} Ft.</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="esemenyDatumIdo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold; font-size: medium;">Vásárlás ideje</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.esemenyDatumIdo}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button><mat-icon (click)="openDialog(element.id)">launch</mat-icon></button>
+        <button mat-icon-button><mat-icon color="warn" (click)="deleteVasarlas(element.id)">delete_outline</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+  </mat-table>
+  <div>
+  <button mat-raised-button color="warn" style="margin-top: 1%; margin-left: 1%;" (click)="prevPage()">Előző oldal</button>
+  <button mat-raised-button color="warn" style="float: right; margin-right: 1%; margin-top: 1%;" (click)="nextPage()" >Következő oldal</button>
+  <p style="text-align: center; font-weight: bold;">Jelenlegi oldal: {{page + 1}} / {{pageSize}}</p>
+  <p style="text-align: center; font-weight: bold;">
+    Oldalankénti tételek:
+    <select [(ngModel)] ="size" (ngModelChange)="this.getVasarlas()"  >
+      <option *ngFor="let number of pageSizeSelection" [value]="number">{{number}}</option>
+    </select>
+  </p>
+  
+</div>
+</div>
+</div>
+

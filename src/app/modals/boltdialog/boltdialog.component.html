@@ -1,0 +1,41 @@
+<form
+name="form"
+#BoltForm="ngForm"
+(ngSubmit)="onSubmit()"
+novalidate
+class="feedback-form"
+autocomplete="off"
+>
+<div class="form-group">
+  <label style="font-weight: bold;">Bolt neve</label>
+  <input
+    type="text"
+    class="form-control"
+    name="nev"
+    #name="ngModel"
+    placeholder="Bolt neve"
+    [(ngModel)]="bolt.nev"
+    required
+  />
+  <label style="font-weight: bold;">PartnerId</label>
+  <input
+    type="number"
+    min="1"
+    class="form-control"
+    name="partnerId"
+    #name="ngModel"
+    placeholder="PartnerId"
+    [(ngModel)]="bolt.partnerId"
+    required
+  />
+</div>
+<button
+  mat-dialog-close="true"
+  style="display: block; margin: auto;"
+  type="submit"
+  [disabled]="!BoltForm.valid"
+  class="btn btn-info pull-right"
+>
+  <span> Létrehozás </span>
+</button>
+</form>
